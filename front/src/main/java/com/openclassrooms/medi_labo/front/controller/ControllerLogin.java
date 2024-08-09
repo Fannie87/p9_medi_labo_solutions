@@ -10,17 +10,17 @@ public class ControllerLogin {
 	
 	@GetMapping("/login")
 	public String getLogin(Model model) {
-		UserAuthentification attributeValue = new UserAuthentification();
-		attributeValue.setUsername("user");
-		attributeValue.setPassword("password");
+		UserAuthentification userAuthentification = new UserAuthentification();
+		userAuthentification.setUsername("user");
+		userAuthentification.setPassword("password");
 		
-		model.addAttribute("userAuthentification", attributeValue);
+		model.addAttribute("userAuthentification", userAuthentification);
 		
 		return "login";
 	}
 	
 	@GetMapping("/")
 	public String getIndex() {
-		return "index";
+		return "redirect:listpatient";
 	}
 }
