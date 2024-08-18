@@ -33,7 +33,7 @@
 			<div class="form-group">
 				<label for="dateNaissance" class="col-sm-2 control-label">Date de Naissance</label>
 				<div class="col-sm-10">
-					<input type="text" th:field="*{dateNaissance}" id="dateNaissance" placeholder="Date de Naissance" class="col-4">
+					<input type="date" th:field="*{dateNaissance}" id="dateNaissance" placeholder="Date de Naissance" class="col-4" data-date-format="dd-mm-yyyy">
 					<p class="text-danger" th:if="${#fields.hasErrors('dateNaissance')}" th:errors="*{dateNaissance}"></p>
 				</div>
 			</div>

@@ -35,9 +35,12 @@ public class PatientListController {
 
 	@PostMapping("/patient/update/{id}")
 	public String updatePatient(@PathVariable("id") Integer id, Patient patient, BindingResult result, Model model) {
+		validatePatient(patient, result);
+		if (result.hasErrors())
+			return "form/update-patient";
+		
 		RestTemplate restTemplate = new RestTemplate();
 		restTemplate.put("http://localhost:8081/api-1-patient/" + id, patient);
-
 		return getListPatient(model);
 	}
 
@@ -47,5 +50,37 @@ public class PatientListController {
 		model.addAttribute("patient", patient);
 		return "form/create-patient";
 	}
+	
+	@PostMapping("/patient/create")
+	public String createPatient(Patient patient, Model model, BindingResult result) {
+		validatePatient(patient, result);
+		if (result.hasErrors())
+			return "form/create-patient";
+		
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.postForEntity("http://localhost:8081/api-1-patient/" , patient, Void.class);
+		return getListPatient(model);
+	}
+	
+	
+	@GetMapping("/patient/delete/{id}")
+	public String getDelete(@PathVariable("id") Integer id, Model model) {
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.delete("http://localhost:8081/api-1-patient/" + id);
+		return getListPatient(model);
+	}
 
+	private void validatePatient(Patient patient, BindingResult result) {
+		if (patient.getNom().isBlank())
+			result.rejectValue("nom", null, "Nom est obligatoire");
+		
+		if (patient.getPrenom().isBlank())
+			result.rejectValue("prenom", null, "Prenom est obligatoire");
+		
+		if (patient.getDateNaissance().isBlank())
+			result.rejectValue("dateNaissance", null, "Date de naissance est obligatoire");
+		
+		if (patient.getGenre().isBlank() || (!patient.getGenre().equals("H") && !patient.getGenre().equals("F")))
+			result.rejectValue("genre", null, "Genre est obligatoire H ou F");
+	}
 }
