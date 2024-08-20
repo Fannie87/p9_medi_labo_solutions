@@ -30,6 +30,9 @@ public class GatewayApplication {
 			.route(p -> p
 					.path("/api-2-note/**")
 					.uri(uriConfiguration.getHttpApi2()))
+			.route(p -> p
+					.path("/api-3-risque/**")
+					.uri(uriConfiguration.getHttpApi3()))
 			.build();
 	}
 
@@ -44,7 +47,7 @@ public class GatewayApplication {
 		
 		private String httpApi1 = "http://localhost:8081/api-1-patient";
 		private String httpApi2 = "http://localhost:8082/api-2-note";
-
+		private String httpApi3 = "http://localhost:8083/api-3-risque";
 
 		public String getHttpApi1() {
 			return httpApi1;
@@ -60,6 +63,14 @@ public class GatewayApplication {
 
 		public void setHttpApi2(String httpApi2) {
 			this.httpApi2 = httpApi2;
+		}
+
+		public String getHttpApi3() {
+			return httpApi3;
+		}
+
+		public void setHttpApi3(String httpApi3) {
+			this.httpApi3 = httpApi3;
 		}
 		
 	}

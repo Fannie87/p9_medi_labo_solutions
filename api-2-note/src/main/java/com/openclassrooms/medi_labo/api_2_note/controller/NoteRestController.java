@@ -19,14 +19,9 @@ public class NoteRestController {
 	  private NoteRepository noteRepository;
 	  
 
-	  @GetMapping("all")
-	  public List<Note> all() {
-	    return noteRepository.findAll();
-	  }
-	  
-	  @GetMapping("patId={patId}")
-	  public List<Note> getOne(@PathVariable String patId) {
-	    return noteRepository.findItemByPatId(patId);
+	  @GetMapping("{id}")
+	  public List<Note> getOne(@PathVariable String id) {
+	    return noteRepository.findItemByPatId(id);
 	  }
 
 	  @PostMapping

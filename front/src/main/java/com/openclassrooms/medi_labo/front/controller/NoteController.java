@@ -17,14 +17,13 @@ public class NoteController {
 	@GetMapping("/patient/note/{id}")
 	public String getListPatient(@PathVariable("id") String id, Model model) {
 		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<Note[]> entity = restTemplate.getForEntity("http://localhost:8090/api-2-note/patId=" + id,
+		ResponseEntity<Note[]> entity = restTemplate.getForEntity("http://localhost:8090/api-2-note/" + id,
 				Note[].class);
 		model.addAttribute("noteLists", entity.getBody());
 		model.addAttribute("id", id); // pour pouvoir rajouter une note sur l'id souhaité
 		return "form/list-note";
 	}
 
-	// TODO ajouter note controller "ADD", get et post
 	@GetMapping("/patient/note/add/{id}/{nom}")
 	public String getNotePatient(@PathVariable("id") String id, @PathVariable("nom") String nom, Model model) {
 		Note note = new Note();
