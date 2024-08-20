@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Update Patient Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<h2>Note</h2>
+		</div>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Id patient</th>
+					<th>Nom du patient</th>
+					<th>Historique des notes</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="note : ${noteLists}">
+					<td style="width: 10%" th:text="${note.patId}"></td>
+					<td th:text="${note.patient}"></td>
+					<td th:text="${note.note}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+</body>
+</html>

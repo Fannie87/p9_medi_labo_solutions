@@ -31,7 +31,8 @@
 					<th>Genre</th>
 					<th>Adresse postale</th>
 					<th>Numéro de téléphone</th>
-					<th>Action</th>
+					<th>Notes</th>
+					<th>Modifications</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -43,7 +44,11 @@
 					<td th:text="${patient.genre}"></td>
 					<td th:text="${patient.adressePostale}"></td>
 					<td th:text="${patient.numeroTelephone}"></td>
-			
+					<td style="width: 15%" class="text-center">
+						<a th:href="@{/patient/note/{id}(id=${patient.id})}">Show</a>&nbsp;|&nbsp;
+						<a th:href="@{/patient/note/add/{id}/{nom}(id=${patient.id},nom=${patient.nom})}">Add</a> 
+					</td>
+
 					<td style="width: 15%" class="text-center">
 						<a th:href="@{/patient/update/{id}(id=${patient.id})}">Edit</a>&nbsp;|&nbsp;
 						<a th:href="@{/patient/delete/{id}(id=${patient.id})}">Delete</a>
