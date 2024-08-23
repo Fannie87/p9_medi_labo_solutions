@@ -13,20 +13,7 @@
 	<artifactId>api-1-patient</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>api-1-patient</name>
-	<description>Demo project for Spring Boot</description>
-	<url />
-	<licenses>
-		<license />
-	</licenses>
-	<developers>
-		<developer />
-	</developers>
-	<scm>
-		<connection />
-		<developerConnection />
-		<tag />
-		<url />
-	</scm>
+	<description>Projet api patient de Medical labo</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -62,6 +49,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 	</dependencies>
 

@@ -7,10 +7,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Note {
 	@Id
 	private String id;
-
 	private String patId;
 	private String patient;
 	private String note;
+
 
 	public String getId() {
 		return id;

@@ -31,8 +31,8 @@ public class PatientRestController {
 		return patientRepository.findById(id);
 	}
 
-	@PutMapping("/{id}")
-	public void putPatient(@PathVariable("id") Integer id,@RequestBody Patient patient) {
+	@PutMapping
+	public void putPatient(@RequestBody Patient patient) {
 		patientRepository.save(patient);
 	}
 	

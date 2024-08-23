@@ -17,23 +17,21 @@
 
             <div class="card my-3 pb-3 shadow rounded-4">
                 <div class="card-body ">
-<!--                     <p class="card-subtitle mb-3 text-success fs-4 text-center" th:if="${sucessLogout}">You were correctly logout !</p> -->
-<!--                     <p class="card-subtitle mb-3 text-danger fs-4 text-center" th:if="${loginError}">Wrong user or password !</p> -->
 
-                    <h5 class="card-title mb-3">Welcome !</h5>
+                    <h5 class="card-title mb-3">Bienvenue !</h5>
                     
                     <form th:action="@{/login}" method="post" th:object="${userAuthentification}">
                         <div class=" form-outline mb-3">
-                            <label class="form-label" for="username">Username</label>:
+                            <label class="form-label" for="username">Identifiant</label>:
                             <input class="form-control" type="text" th:field="*{username}" autofocus="autofocus" value="user"/>
                         </div>
 
                         <div class="form-outline mb-3">
-                            <label class="form-label" for="password">Password</label>:
+                            <label class="form-label" for="password">Mot de passe</label>:
                             <input class="form-control" type="text" th:field="*{password}" /> <br />
                         </div>
                         <div class="text-center">
-                            <input class="btn btn-primary w-50 " type="submit" value="Log in" />
+                            <input class="btn btn-primary w-50 " type="submit" value="Connection" />
                         </div>
                     </form>
                 </div>

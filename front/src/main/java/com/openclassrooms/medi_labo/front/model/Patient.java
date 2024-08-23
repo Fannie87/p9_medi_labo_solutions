@@ -8,6 +8,7 @@ public class Patient {
 	private String genre;
 	private String adressePostale;
 	private String numeroTelephone;
+	private String risque;
 	
 	public int getId() {
 		return id;
@@ -50,6 +51,12 @@ public class Patient {
 	}
 	public void setNumeroTelephone(String numeroTelephone) {
 		this.numeroTelephone = numeroTelephone;
+	}
+	public String getRisque() {
+		return risque;
+	}
+	public void setRisque(String risque) {
+		this.risque = risque;
 	}
 	
 }

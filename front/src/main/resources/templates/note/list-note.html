@@ -10,7 +10,7 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<h2>Note</h2>
+			<h2><a href="/front-medilabo/listpatient"><i class="bi bi-house"></i></a> Note</h2>
 		</div>
 		<table class="table table-bordered">
 			<thead>
@@ -18,6 +18,7 @@
 					<th>Id patient</th>
 					<th>Nom du patient</th>
 					<th>Historique des notes</th>
+					<th>Modifications</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -25,6 +26,10 @@
 					<td style="width: 10%" th:text="${note.patId}"></td>
 					<td th:text="${note.patient}"></td>
 					<td th:text="${note.note}"></td>
+					<td style="width: 15%" class="text-center">
+						<a th:href="@{/note/update/{id}(id=${note.id})}">Modifier</a>&nbsp;|&nbsp;
+						<a th:href="@{/note/delete/{id}/{patId}(id=${note.id},patId=${note.patId})}">Supprimer</a>
+					</td>
 				</tr>
 			</tbody>
 		</table>
