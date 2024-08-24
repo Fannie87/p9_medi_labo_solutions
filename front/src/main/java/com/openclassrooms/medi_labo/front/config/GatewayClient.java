@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.openclassrooms.medi_labo.front.model.Note;
 import com.openclassrooms.medi_labo.front.model.Patient;
 
-@FeignClient(name = "gateway", url = "http://localhost:8090")
+@FeignClient(name = "gateway", url = "${url.gateway}")
 public interface GatewayClient {
 
     //////////// PATIENT-SERVICE/////////////

@@ -1,5 +1,6 @@
 package com.openclassrooms.medi_labo.api_3_risque.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -9,13 +10,19 @@ import okhttp3.OkHttpClient;
 @Configuration
 public class FeignConfig {
 
-  @Bean
-  public BasicAuthRequestInterceptor basicAuthRequestInterceptor() {
-    return new BasicAuthRequestInterceptor("user", "password");
-  }
+	@Value("${security.user}")
+	private String user;
 
-  @Bean
-  public OkHttpClient client() {
-    return new OkHttpClient();
-  }
+	@Value("${security.password}")
+	private String password;
+
+	@Bean
+	public BasicAuthRequestInterceptor basicAuthRequestInterceptor() {
+		return new BasicAuthRequestInterceptor(user, password);
+	}
+
+	@Bean
+	public OkHttpClient client() {
+		return new OkHttpClient();
+	}
 }
