@@ -1,0 +1,56 @@
+services:
+    db:
+        container_name: db
+        image: mysql
+        ports:
+            - "3306"
+        environment:
+            MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+            MYSQL_USER: "user"
+            MYSQL_PASSWORD: "password"
+            MYSQL_DATABASE: "database"
+        healthcheck:
+            test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+            timeout: 20s
+            retries: 10
+#services:
+#  mysqldb:
+#    image: mysql:8
+#    container_name: mysqldb
+#    ports:
+#      - "3307:3306"
+#    environment:
+#      MYSQL_ROOT_PASSWORD: root
+#      MYSQL_DATABASE: p9patient
+#    volumes:
+#      - sql-data:/var/lib/mysql
+#  front:
+#    build: 
+#      context: front
+#    ports:
+#     - "8080:8080"
+#  api-1-patient:
+#    build: 
+#      context: api-1-patient
+#    ports:
+#     - "8081:8081"
+#    depends_on:
+#     - mysqldb 
+#  api-2-note:
+#    build: 
+#      context: api-2-note
+#    ports:
+#     - "8082:8082"
+#  api-3-risque:
+#    build: 
+#      context: front
+#    ports:
+#     - "8083:8083"
+#  gateway:
+#    build: 
+#      context: front
+#    ports:
+#     - "8090:8090"
+
+#volumes:
+#  sql-data:

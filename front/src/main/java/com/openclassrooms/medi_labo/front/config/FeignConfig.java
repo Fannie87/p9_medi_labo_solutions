@@ -16,6 +16,7 @@ public class FeignConfig {
 	@Value("${security.password}")
 	private String password;
 	
+//	Permet de demander un user et password à chaque requête sans le réécrire à chaque fois
 	@Bean
 	public BasicAuthRequestInterceptor basicAuthRequestInterceptor() {
 		return new BasicAuthRequestInterceptor(user, password);
