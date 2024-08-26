@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.openclassrooms.medi_labo.front.model.Note;
 import com.openclassrooms.medi_labo.front.model.Patient;
@@ -19,9 +18,6 @@ public interface GatewayClient {
     //////////// PATIENT-SERVICE/////////////
     @GetMapping(value = "/api-1-patient/{id}")
     Patient getPatient(@PathVariable("id") int id);
-
-    @GetMapping(value = "/api-1-patient")
-    Patient getPatient(@RequestParam String firstName, @RequestParam String lastName);
 
     @GetMapping(value = "/api-1-patient/")
     List<Patient> getPatients();
@@ -40,7 +36,6 @@ public interface GatewayClient {
     @GetMapping(value = "/api-2-note/{id}")
     Note getNoteById(@PathVariable("id") String id);
 
-    
     @GetMapping(value = "/api-2-note/patId/{patId}")
     List<Note> getNotesByPatientId(@PathVariable("patId") int patId);
 

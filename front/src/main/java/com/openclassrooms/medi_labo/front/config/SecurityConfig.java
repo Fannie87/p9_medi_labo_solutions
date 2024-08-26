@@ -24,7 +24,6 @@ public class SecurityConfig {
                 .antMatchers("/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                
                 .formLogin()  //login configuration
                 .loginPage("/login")
                 .defaultSuccessUrl("/")
@@ -32,10 +31,6 @@ public class SecurityConfig {
                 .logout()    //logout configuration
                 .logoutUrl("/app-logout")
                 .logoutSuccessUrl("/login")
-//                .and()
-//                .rememberMe()
-//                .key("123456")
-//                .userDetailsService(myAppUserDetailsService)
                 .and()
                 .exceptionHandling() //exception handling configuration
                 .accessDeniedPage("/app/error");

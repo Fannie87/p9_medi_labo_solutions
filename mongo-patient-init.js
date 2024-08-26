@@ -1,4 +1,9 @@
-[
+db = db.getSiblingDB('p9patient');
+
+
+db.createCollection('note');
+
+db.note.insertMany([
     {
         "patId": "1",
         "patient": "TestNone",
@@ -44,4 +49,4 @@
         "patient": "TestEarlyOnset",
         "note": "Taille, PopatIds, Cholestérol, Vertige et Réaction"
     }
-]
+]);

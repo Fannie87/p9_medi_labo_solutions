@@ -2,6 +2,10 @@ drop database if exists p9patient;
 create database p9patient;
 use p9patient;
 
+CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON mediscreen.* TO 'user'@'localhost';
+
+
 create table patient(
 	id int not null auto_increment,
 	nom varchar (30),

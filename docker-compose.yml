@@ -1,56 +1,75 @@
 services:
-    db:
-        container_name: db
-        image: mysql
-        ports:
-            - "3306"
-        environment:
-            MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-            MYSQL_USER: "user"
-            MYSQL_PASSWORD: "password"
-            MYSQL_DATABASE: "database"
-        healthcheck:
-            test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-            timeout: 20s
-            retries: 10
-#services:
-#  mysqldb:
-#    image: mysql:8
-#    container_name: mysqldb
+#  mongo_db:
+#    image: mongo:latest
+#    ports:
+#    - '27018:27017'
+#    container_name: mongo
+#    restart: unless-stopped
+#    networks:
+#    - mediscreen
+#    volumes:
+#    - ./mongo-patient-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+#  mysql_db:
+#    container_name: mysql_db
+#    image: mysql:5.7
 #    ports:
 #      - "3307:3306"
 #    environment:
 #      MYSQL_ROOT_PASSWORD: root
 #      MYSQL_DATABASE: p9patient
+#      MYSQL_USER: user
+#      MYSQL_PASSWORD: password
+#    networks:
+#    - mediscreen
 #    volumes:
-#      - sql-data:/var/lib/mysql
+#    - "./database-patient.sql:/docker-entrypoint-initdb.d/1.sql"
 #  front:
 #    build: 
 #      context: front
 #    ports:
 #     - "8080:8080"
+#    networks:
+#     - mediscreen
 #  api-1-patient:
 #    build: 
 #      context: api-1-patient
 #    ports:
 #     - "8081:8081"
+#    networks:
+#     - mediscreen
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://mysql_db:3306/p9patient?autoReconnect=true&useSSL=false
 #    depends_on:
-#     - mysqldb 
+#     - mysql_db
 #  api-2-note:
 #    build: 
 #      context: api-2-note
 #    ports:
 #     - "8082:8082"
+#    networks:
+#     - mediscreen
 #  api-3-risque:
 #    build: 
-#      context: front
+#      context: api-3-risque
 #    ports:
 #     - "8083:8083"
-#  gateway:
-#    build: 
-#      context: front
-#    ports:
-#     - "8090:8090"
+#    networks:
+#     - mediscreen
 
-#volumes:
-#  sql-data:
+  gateway:
+    build: 
+      context: gateway
+    ports:
+     - "8090:8090"
+    networks:
+     - mediscreen
+    environment:
+      url.httpApi1: http://api-1-patient:8081/api-1-patient
+      url.httpApi2: http://api-2-note:8082/api-2-note
+      url.httpApi3: http://api-3-risque:8083/api-3-risque
+
+      
+      
+networks:
+  mediscreen:
+    driver: bridge

@@ -3,7 +3,7 @@ package com.openclassrooms.medi_labo.api_2_note.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("NoteItem")
+@Document("note")
 public class Note {
 	@Id
 	private String id;
