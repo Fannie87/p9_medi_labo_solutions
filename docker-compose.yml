@@ -6,7 +6,7 @@ services:
     container_name: mongo
     restart: unless-stopped
     networks:
-    - mediscreen
+    - medinet
     volumes:
     - ./mongo-patient-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
   mysql_db:
@@ -20,7 +20,7 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: password
     networks:
-    - mediscreen
+    - medinet
     volumes:
     - "./database-patient.sql:/docker-entrypoint-initdb.d/1.sql"
   front:
@@ -29,7 +29,7 @@ services:
     ports:
      - "8080:8080"
     networks:
-     - mediscreen
+     - medinet
     environment:
       URL_GATEWAY: http://gateway:8090
   api1patient:
@@ -38,7 +38,7 @@ services:
     ports:
      - "8081:8081"
     networks:
-     - mediscreen
+     - medinet
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql_db:3306/p9patient?autoReconnect=true&useSSL=false
     depends_on:
@@ -49,7 +49,7 @@ services:
     ports:
      - "8082:8082"
     networks:
-     - mediscreen
+     - medinet
     environment:
       SPRING_DATA_MONGODB_URI: mongodb://mongo:27017/p9patient
   api3risque:
@@ -58,7 +58,7 @@ services:
     ports:
      - "8083:8083"
     networks:
-     - mediscreen
+     - medinet
     environment:
       URL_GATEWAY: http://gateway:8090
   gateway:
@@ -67,12 +67,12 @@ services:
     ports:
      - "8090:8090"
     networks:
-     - mediscreen
+     - medinet
     environment:
       URL_HTTPAPI1: http://api1patient:8081/api-1-patient
       URL_HTTPAPI2: http://api2note:8082/api-2-note
       URL_HTTPAPI3: http://api3risque:8083/api-3-risque
       
 networks:
-  mediscreen:
+  medinet:
     driver: bridge

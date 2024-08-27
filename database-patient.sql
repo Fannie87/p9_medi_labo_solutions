@@ -3,7 +3,7 @@ create database p9patient;
 use p9patient;
 
 CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON mediscreen.* TO 'user'@'localhost';
+GRANT ALL PRIVILEGES ON p9patient.* TO 'user'@'localhost';
 
 
 create table patient(
