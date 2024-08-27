@@ -27,7 +27,7 @@ Se connecter à l'url suivante avec les identifiants user/password
 - API3-Risque fait ses appels directement aux bases de données, sans passer par API1 Patient et API2 Note
 
 ### Schéma Architecure MediLabo Solutions
-![Architecure MediLabo Solutions](Architecure MediLabo Solutions.png)
+![Architecture MediLabo Solutions](architecture-MediLabo-Solutions.png)
 
 
 
