@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.openclassrooms.medi-labo</groupId>
-	<artifactId>api-2-note</artifactId>
+	<artifactId>api2note</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>api-2-note</name>
+	<name>api2note</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>

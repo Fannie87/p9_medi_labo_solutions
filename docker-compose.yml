@@ -1,61 +1,66 @@
 services:
-#  mongo_db:
-#    image: mongo:latest
-#    ports:
-#    - '27018:27017'
-#    container_name: mongo
-#    restart: unless-stopped
-#    networks:
-#    - mediscreen
-#    volumes:
-#    - ./mongo-patient-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
-#  mysql_db:
-#    container_name: mysql_db
-#    image: mysql:5.7
-#    ports:
-#      - "3307:3306"
-#    environment:
-#      MYSQL_ROOT_PASSWORD: root
-#      MYSQL_DATABASE: p9patient
-#      MYSQL_USER: user
-#      MYSQL_PASSWORD: password
-#    networks:
-#    - mediscreen
-#    volumes:
-#    - "./database-patient.sql:/docker-entrypoint-initdb.d/1.sql"
-#  front:
-#    build: 
-#      context: front
-#    ports:
-#     - "8080:8080"
-#    networks:
-#     - mediscreen
-#  api-1-patient:
-#    build: 
-#      context: api-1-patient
-#    ports:
-#     - "8081:8081"
-#    networks:
-#     - mediscreen
-#    environment:
-#      SPRING_DATASOURCE_URL: jdbc:mysql://mysql_db:3306/p9patient?autoReconnect=true&useSSL=false
-#    depends_on:
-#     - mysql_db
-#  api-2-note:
-#    build: 
-#      context: api-2-note
-#    ports:
-#     - "8082:8082"
-#    networks:
-#     - mediscreen
-#  api-3-risque:
-#    build: 
-#      context: api-3-risque
-#    ports:
-#     - "8083:8083"
-#    networks:
-#     - mediscreen
-
+  mongo_db:
+    image: mongo:latest
+    ports:
+    - '27018:27017'
+    container_name: mongo
+    restart: unless-stopped
+    networks:
+    - mediscreen
+    volumes:
+    - ./mongo-patient-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+  mysql_db:
+    container_name: mysql_db
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: p9patient
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    networks:
+    - mediscreen
+    volumes:
+    - "./database-patient.sql:/docker-entrypoint-initdb.d/1.sql"
+  front:
+    build: 
+      context: front
+    ports:
+     - "8080:8080"
+    networks:
+     - mediscreen
+    environment:
+      URL_GATEWAY: http://gateway:8090
+  api1patient:
+    build: 
+      context: api1patient
+    ports:
+     - "8081:8081"
+    networks:
+     - mediscreen
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql_db:3306/p9patient?autoReconnect=true&useSSL=false
+    depends_on:
+     - mysql_db
+  api2note:
+    build: 
+      context: api2note
+    ports:
+     - "8082:8082"
+    networks:
+     - mediscreen
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://mongo:27017/p9patient
+  api3risque:
+    build: 
+      context: api3risque
+    ports:
+     - "8083:8083"
+    networks:
+     - mediscreen
+    environment:
+      URL_GATEWAY: http://gateway:8090
   gateway:
     build: 
       context: gateway
@@ -64,11 +69,9 @@ services:
     networks:
      - mediscreen
     environment:
-      url.httpApi1: http://api-1-patient:8081/api-1-patient
-      url.httpApi2: http://api-2-note:8082/api-2-note
-      url.httpApi3: http://api-3-risque:8083/api-3-risque
-
-      
+      URL_HTTPAPI1: http://api1patient:8081/api-1-patient
+      URL_HTTPAPI2: http://api2note:8082/api-2-note
+      URL_HTTPAPI3: http://api3risque:8083/api-3-risque
       
 networks:
   mediscreen:
