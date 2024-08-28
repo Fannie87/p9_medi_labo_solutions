@@ -44,7 +44,7 @@ public class PatientListController {
 	public String updatePatient(@PathVariable("id") Integer id, Patient patient, BindingResult result, Model model) {
 		validatePatient(patient, result);
 		if (result.hasErrors())
-			return "form/update-patient";
+			return "patient/update-patient";
 		gatewayClient.updatePatient(patient);
 
 		return "redirect:/listpatient";
@@ -61,7 +61,7 @@ public class PatientListController {
 	public String createPatient(Patient patient, Model model, BindingResult result) {
 		validatePatient(patient, result);
 		if (result.hasErrors())
-			return "form/create-patient";
+			return "patient/create-patient";
 		gatewayClient.createPatient(patient);
 		return "redirect:/listpatient";
 	}
